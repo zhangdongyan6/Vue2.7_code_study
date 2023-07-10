@@ -17,8 +17,8 @@ export const createCompiler = createCompilerCreator(function baseCompile(
   }
   const code = generate(ast, options)
   return {
-    ast,
-    render: code.render,
+    ast, // 抽象语法树
+    render: code.render, // render 函数
     staticRenderFns: code.staticRenderFns
   }
 })

@@ -17,7 +17,11 @@ import { isUpdatingChildComponent } from './lifecycle'
 import type { Component } from 'types/component'
 import { setCurrentInstance } from 'v3/currentInstance'
 import { syncSetupSlots } from 'v3/apiSetup'
-
+/***
+ * 对vue实例属性$slots, $scopedSlots初始化，
+ * 绑定$createElement方法
+ * $attr, $listeners添加响应式
+ */
 export function initRender(vm: Component) {
   vm._vnode = null // the root of the child tree
   vm._staticTrees = null // v-once cached trees

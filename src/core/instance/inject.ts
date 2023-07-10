@@ -26,7 +26,9 @@ export function initProvide(vm: Component) {
     }
   }
 }
-
+/***
+ * 初始化inject对象，并对inject对象添加响应式
+ */
 export function initInjections(vm: Component) {
   const result = resolveInject(vm.$options.inject, vm)
   if (result) {
@@ -49,7 +51,9 @@ export function initInjections(vm: Component) {
     toggleObserving(true)
   }
 }
-
+/**
+ * 遍历键值方式，从provide上或获取inject的键所对应的值
+ */
 export function resolveInject(
   inject: any,
   vm: Component

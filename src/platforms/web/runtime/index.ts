@@ -19,6 +19,7 @@ import platformComponents from './components/index'
 import type { Component } from 'types/component'
 
 // install platform specific utils
+// 增加全局配置，可能适用于校验
 Vue.config.mustUseProp = mustUseProp
 Vue.config.isReservedTag = isReservedTag
 Vue.config.isReservedAttr = isReservedAttr
@@ -26,13 +27,18 @@ Vue.config.getTagNamespace = getTagNamespace
 Vue.config.isUnknownElement = isUnknownElement
 
 // install platform runtime directives & components
+// 合并全局配置中的指令和组件
 extend(Vue.options.directives, platformDirectives)
 extend(Vue.options.components, platformComponents)
 
 // install platform patch function
+// 安装了一个 patch 函数，也可以叫补丁函数或者更新函数。
+// 主要的作用就是把：虚拟dom 转化为真实的dom（vdom => dom)
 Vue.prototype.__patch__ = inBrowser ? patch : noop
 
 // public mount method
+// 实现了 $mount 方法：其实就只调用了一个mountComponent()方法
+// $mount的最终目的就是：把虚拟dom 转化为真实的dom，并且追加到宿主元素中去（vdom => dom => append）
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean

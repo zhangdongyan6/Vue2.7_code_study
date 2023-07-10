@@ -32,11 +32,13 @@ Vue.prototype.$mount = function (
       )
     return this
   }
-
-  const options = this.$options
+  // this指向mount方法调用的vue实例
+  const options = this.$options // 获取vue实力的$options参数
   // resolve template/el and convert to render function
   if (!options.render) {
+    // options 中不存在render函数
     let template = options.template
+    // 解析模板，根据option配置项，根据传入的id等
     if (template) {
       if (typeof template === 'string') {
         if (template.charAt(0) === '#') {
@@ -67,6 +69,7 @@ Vue.prototype.$mount = function (
         mark('compile')
       }
 
+      // 将模板转为render函数
       const { render, staticRenderFns } = compileToFunctions(
         template,
         {
@@ -88,8 +91,22 @@ Vue.prototype.$mount = function (
       }
     }
   }
+  // options 中存在render函数，则直接调用 mount 挂载
   return mount.call(this, el, hydrating)
 }
+
+/**
+ * 总结一下:
+ * new Vue({
+ *    el: "#app",
+ *    template: "<div> template </div>",
+ *    template: "#app",
+ *    render(h){ return h("div", "render")},
+ *    data: {}
+ * })
+ *  在用户同时设置了 el、template、render的时候，优先级的判断为：render > template > el
+ */ 
+
 
 /**
  * Get outerHTML of elements, taking care

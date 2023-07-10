@@ -12,7 +12,16 @@ import type { InternalComponentOptions } from 'types/options'
 import { EffectScope } from 'v3/reactivity/effectScope'
 
 let uid = 0
-
+/**
+ * initMixin方法里在Vue的原型对象上定义了一个方法_init,
+ * _init方法中对vue的实例添加了属性和方法，
+ * 完成生命周期、节点相关属性的初始化，
+ * 完成监听事件初始化，
+ * 初始化渲染
+ * 调用beforeCreate
+ * 初始化inject, props, methods, data, computed, watch, provide
+ * 调用created
+ */
 export function initMixin(Vue: typeof Component) {
   Vue.prototype._init = function (options?: Record<string, any>) {
     const vm: Component = this

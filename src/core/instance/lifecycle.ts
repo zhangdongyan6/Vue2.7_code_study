@@ -30,7 +30,12 @@ export function setActiveInstance(vm: Component) {
     activeInstance = prevActiveInstance
   }
 }
-
+/**
+ * 初始化实例有关节点的父节点、根节点和子节点属性，比如$parent, $root, $children, $refs等
+ * _provide: 父组件的注入
+ * 初始化与生命周期有关的私有属性_isMounted, _isDestroyed等，
+ * 可以理解为节点属性都是和生命周期有关，销毁和被创建
+*/
 export function initLifecycle(vm: Component) {
   const options = vm.$options
 

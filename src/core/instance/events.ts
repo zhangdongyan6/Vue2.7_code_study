@@ -8,7 +8,9 @@ import {
   invokeWithErrorHandling
 } from '../util/index'
 import { updateListeners } from '../vdom/helpers/index'
-
+/*
+ * 初始化父级绑定的监听事件 
+ */
 export function initEvents(vm: Component) {
   vm._events = Object.create(null)
   vm._hasHookEvent = false
@@ -38,7 +40,9 @@ function createOnceHandler(event, fn) {
     }
   }
 }
-
+/**
+ * 更新组件的监听事件，今天或移除事件
+ */
 export function updateComponentListeners(
   vm: Component,
   listeners: Object,

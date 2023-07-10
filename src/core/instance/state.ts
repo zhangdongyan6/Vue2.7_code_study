@@ -48,7 +48,10 @@ export function proxy(target: Object, sourceKey: string, key: string) {
   }
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
-
+/**
+ * 状态初始化，依次对props、methods、data、computed、watch的初始化
+ * @param vm 
+ */
 export function initState(vm: Component) {
   const opts = vm.$options
   if (opts.props) initProps(vm, opts.props)
@@ -69,6 +72,9 @@ export function initState(vm: Component) {
   }
 }
 
+/***
+ * props初始化
+ */
 function initProps(vm: Component, propsOptions: Object) {
   const propsData = vm.$options.propsData || {}
   const props = (vm._props = shallowReactive({}))
