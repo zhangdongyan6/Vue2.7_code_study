@@ -25,6 +25,7 @@ export interface SetupContext {
   expose: (exposed: Record<string, any>) => void
 }
 
+// 在initState中被调用，组合式API
 export function initSetup(vm: Component) {
   const options = vm.$options
   const setup = options.setup

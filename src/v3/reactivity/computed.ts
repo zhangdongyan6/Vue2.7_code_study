@@ -25,7 +25,7 @@ export interface WritableComputedOptions<T> {
   get: ComputedGetter<T>
   set: ComputedSetter<T>
 }
-
+// 计算属性常见的两种形式，函数式及选项式写法，函数式仅能做get操作，选项式需设置get与set方法
 export function computed<T>(
   getter: ComputedGetter<T>,
   debugOptions?: DebuggerOptions

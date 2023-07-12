@@ -12,7 +12,10 @@ import type { Ref, UnwrapRefSimple, RawSymbol } from './ref'
 export const enum ReactiveFlags {
   SKIP = '__v_skip',
   IS_READONLY = '__v_isReadonly',
-  IS_SHALLOW = '__v_isShallow',
+  /**
+   * 浅层响应式
+   */
+  IS_SHALLOW = '__v_isShallow', 
   RAW = '__v_raw'
 }
 
@@ -37,6 +40,7 @@ export declare const ShallowReactiveMarker: unique symbol
 
 export type ShallowReactive<T> = T & { [ShallowReactiveMarker]?: true }
 
+// 对原始对象进行浅层次的响应式，仅对对象根级属性做响应式
 /**
  * Return a shallowly-reactive copy of the original object, where only the root
  * level properties are reactive. It also does not auto-unwrap refs (even at the

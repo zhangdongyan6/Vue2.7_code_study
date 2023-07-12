@@ -31,6 +31,9 @@ function formatName(name: string) {
   return `on${name[0].toUpperCase() + name.slice(1)}`
 }
 
+/**
+ * 注入钩子函数到可选配置项 
+ */
 function injectHook(instance: Component, hookName: string, fn: () => void) {
   const options = instance.$options
   options[hookName] = mergeLifecycleHook(options[hookName], fn)
